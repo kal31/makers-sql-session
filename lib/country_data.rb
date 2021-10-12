@@ -37,6 +37,8 @@ class CountryData
   end
 
   def self.population_less_than_20_million
+    result = DatabaseConnection.query("SELECT * FROM countries WHERE population < 20;")
+    result.map{ |country| CountryData.new(country['name'], country['continent'], country['population'], country['density'], country['gni']) }
   end
 
   def self.population_density_between_50_and_150
